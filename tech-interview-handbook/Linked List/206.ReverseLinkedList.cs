@@ -9,14 +9,18 @@
  *     }
  * }
  */
-public class Solution {
-    public ListNode ReverseList(ListNode head) {
+public class Solution
+{
+    public ListNode ReverseList(ListNode head)
+    {
         return ReverseListIterative(head);
     }
 
-    private ListNode ReverseListIterative(ListNode head) {
+    private ListNode ReverseListIterative(ListNode head)
+    {
         ListNode newHead = null;
-        while (head != null) {
+        while (head != null)
+        {
             var next = head.next;
             head.next = newHead;
             newHead = head;
@@ -25,10 +29,9 @@ public class Solution {
         return newHead;
     }
 
-    private ListNode ReverseListRecurisve(ListNode head, ListNode newHead = null) {
-        if (head == null) {
-            return newHead;
-        }
+    private ListNode ReverseListRecurisve(ListNode head, ListNode newHead = null)
+    {
+        if (head == null) return newHead;
         var next = head.next;
         head.next = newHead;
         return ReverseListRecurisve(next, head);

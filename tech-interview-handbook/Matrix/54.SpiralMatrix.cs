@@ -20,7 +20,6 @@ public class Solution {
 
             left++; right--; up++; down--;
         }
-
         return result;
     }
 }
