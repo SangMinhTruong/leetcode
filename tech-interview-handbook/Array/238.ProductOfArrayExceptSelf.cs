@@ -3,6 +3,7 @@ public class Solution
     public int[] ProductExceptSelf(int[] nums)
     {
         int[] ans = new int[nums.Length];
+
         for (int i = 0; i < nums.Length; i++)
         {
             ans[i] = 1;
