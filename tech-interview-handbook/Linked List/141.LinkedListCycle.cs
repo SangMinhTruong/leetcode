@@ -13,15 +13,18 @@ public class Solution
 {
     public bool HasCycle(ListNode head)
     {
-        var fast = head;
-        var slow = head;
-        do
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null)
         {
-            if (fast == null || fast.next == null || fast.next.next == null)
-                return false;
-            fast = fast.next.next;
             slow = slow.next;
-        } while (fast != slow);
-        return true;
+            fast = fast.next.next;
+
+            if (fast == slow)
+                return true;
+        }
+
+        return false;
     }
 }
