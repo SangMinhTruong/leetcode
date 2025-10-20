@@ -7,10 +7,8 @@ public class Solution
 
     private int NumIslandsDFS(char[][] grid)
     {
-        if (grid == null)
-            return 0;
-
         int count = 0;
+
         for (int i = 0; i < grid.Length; i++)
         {
             for (int j = 0; j < grid[0].Length; j++)
@@ -22,31 +20,27 @@ public class Solution
                 }
             }
         }
+
         return count;
     }
 
     private void DFS(char[][] grid, int i, int j)
     {
-        if (grid[i][j] != '1')
+        if (i < 0 || j < 0 || i >= grid.Length || j >= grid[0].Length || grid[i][j] != '1')
             return;
 
         grid[i][j] = '#';
-        (int, int)[] directions = [(0, 1), (0, -1), (1, 0), (-1, 0)];
-        foreach (var direction in directions)
-        {
-            var nextI = i + direction.Item1;
-            var nextJ = j + direction.Item2;
-            if (nextI >= 0 && nextJ >= 0 && nextI < grid.Length && nextJ < grid[0].Length)
-                DFS(grid, nextI, nextJ);
-        }
+
+        DFS(grid, i + 1, j);
+        DFS(grid, i - 1, j);
+        DFS(grid, i, j + 1);
+        DFS(grid, i, j - 1);
     }
 
     private int NumIslandsBFS(char[][] grid)
     {
-        if (grid == null)
-            return 0;
-
         int count = 0;
+
         for (int i = 0; i < grid.Length; i++)
         {
             for (int j = 0; j < grid[0].Length; j++)
@@ -58,6 +52,7 @@ public class Solution
                 }
             }
         }
+
         return count;
     }
 
@@ -65,15 +60,18 @@ public class Solution
     {
         Queue<(int, int)> queue = new Queue<(int, int)>();
         queue.Enqueue((i, j));
+
         while (queue.Count > 0)
         {
             (int curI, int curJ) = queue.Dequeue();
             grid[curI][curJ] = '#';
-            (int, int)[] directions = [(0, 1), (0, -1), (1, 0), (-1, 0)];
-            foreach (var direction in directions)
+
+            (int, int)[] directions = [(1, 0), (-1, 0), (0, 1), (0, -1)];
+            foreach ((int dirI, int dirJ) in directions)
             {
-                var nextI = curI + direction.Item1;
-                var nextJ = curJ + direction.Item2;
+                var nextI = curI + dirI;
+                var nextJ = curJ + dirJ;
+
                 if (
                     nextI >= 0
                     && nextJ >= 0
