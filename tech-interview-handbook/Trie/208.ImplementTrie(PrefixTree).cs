@@ -1,41 +1,59 @@
 public class Trie
 {
-    private bool isEnd = false;
-    private Trie[] children = new Trie[26];
+    private bool hasWord;
+    private Trie[] alphabet;
+
+    public Trie()
+    {
+        hasWord = false;
+        alphabet = new Trie[26];
+    }
 
     public void Insert(string word)
     {
-        var currentNode = this;
-        foreach (var c in word)
+        Trie currentNode = this;
+        foreach (char character in word)
         {
-            if (currentNode.children[c - 'a'] == null)
-                currentNode.children[c - 'a'] = new Trie();
-            currentNode = currentNode.children[c - 'a'];
+            int index = character - 'a';
+
+            if (currentNode.alphabet[index] == null)
+                currentNode.alphabet[index] = new Trie();
+
+            currentNode = currentNode.alphabet[index];
         }
-        currentNode.isEnd = true;
+
+        currentNode.hasWord = true;
     }
 
     public bool Search(string word)
     {
-        var currentNode = this;
-        foreach (var c in word)
+        Trie currentNode = this;
+        foreach (char character in word)
         {
-            if (currentNode.children[c - 'a'] == null)
+            int index = character - 'a';
+
+            if (currentNode.alphabet[index] == null)
                 return false;
-            currentNode = currentNode.children[c - 'a'];
+
+            currentNode = currentNode.alphabet[index];
         }
-        return currentNode.isEnd;
+
+        return currentNode.hasWord;
     }
 
     public bool StartsWith(string prefix)
     {
-        var currentNode = this;
-        foreach (var c in prefix)
+        Trie currentNode = this;
+        foreach (char character in prefix)
         {
-            if (currentNode.children[c - 'a'] == null)
+            int index = character - 'a';
+
+            if (currentNode.alphabet[index] == null)
                 return false;
-            currentNode = currentNode.children[c - 'a'];
+
+            currentNode = currentNode.alphabet[index];
         }
+
         return true;
     }
 }
