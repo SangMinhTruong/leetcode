@@ -11,6 +11,7 @@ public class Solution
         {
             if (availableCharacters[c - 'a'] <= 0)
                 return false;
+
             availableCharacters[c - 'a']--;
         }
 
