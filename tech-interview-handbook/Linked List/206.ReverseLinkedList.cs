@@ -18,22 +18,27 @@ public class Solution
 
     private ListNode ReverseListIterative(ListNode head)
     {
-        ListNode newHead = null;
+        ListNode prev = null;
+
         while (head != null)
         {
-            var next = head.next;
-            head.next = newHead;
-            newHead = head;
+            ListNode next = head.next;
+            head.next = prev;
+            prev = head;
             head = next;
         }
-        return newHead;
+
+        return prev;
     }
 
-    private ListNode ReverseListRecurisve(ListNode head, ListNode newHead = null)
+    private ListNode ReverseListRecursive(ListNode head, ListNode newHead = null)
     {
-        if (head == null) return newHead;
-        var next = head.next;
+        if (head == null)
+            return newHead;
+
+        ListNode next = head.next;
         head.next = newHead;
-        return ReverseListRecurisve(next, head);
+
+        return ReverseListRecursive(next, head);
     }
 }
