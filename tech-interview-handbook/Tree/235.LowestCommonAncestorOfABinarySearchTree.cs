@@ -21,6 +21,7 @@ public class Solution
             return LowestCommonAncestorRecursive(root.left, p, q);
         else if (root.val < p.val && root.val < q.val)
             return LowestCommonAncestorRecursive(root.right, p, q);
+
         return root;
     }
 
@@ -28,6 +29,7 @@ public class Solution
     {
         var small = Math.Min(p.val, q.val);
         var large = Math.Max(p.val, q.val);
+
         while (root != null)
         {
             if (root.val > large)
@@ -37,6 +39,7 @@ public class Solution
             else
                 return root;
         }
+
         return null;
     }
 }
