@@ -15,7 +15,7 @@ public class Solution
 {
     public int MaxDepth(TreeNode root)
     {
-        return MaxDepthIterativeBFS(root);
+        return MaxDepthRecursive(root);
     }
 
     private int MaxDepthRecursive(TreeNode root)
@@ -31,18 +31,24 @@ public class Solution
         if (root == null)
             return 0;
 
+        int max = 0;
+
         var stack = new Stack<(TreeNode, int)>();
         stack.Push((root, 1));
-        int max = 0;
+
         while (stack.Count > 0)
         {
             var (currentNode, currentDepth) = stack.Pop();
+
             max = Math.Max(max, currentDepth);
+
             if (currentNode.left != null)
                 stack.Push((currentNode.left, currentDepth + 1));
+
             if (currentNode.right != null)
                 stack.Push((currentNode.right, currentDepth + 1));
         }
+
         return max;
     }
 
@@ -51,23 +57,31 @@ public class Solution
         if (root == null)
             return 0;
 
+        int max = 0;
+
         var queue = new Queue<TreeNode>();
         queue.Enqueue(root);
-        int max = 0;
+
         while (queue.Count > 0)
         {
             int size = queue.Count;
+
             while (size > 0)
             {
                 var currentNode = queue.Dequeue();
+
                 if (currentNode.left != null)
                     queue.Enqueue(currentNode.left);
+
                 if (currentNode.right != null)
                     queue.Enqueue(currentNode.right);
+
                 size--;
             }
+
             max++;
         }
+
         return max;
     }
 }
