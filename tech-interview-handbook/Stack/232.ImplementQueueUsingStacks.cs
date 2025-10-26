@@ -29,6 +29,7 @@ public class MyQueue
                 output.Push(input.Pop());
             }
         }
+
         return output.Peek();
     }
 
