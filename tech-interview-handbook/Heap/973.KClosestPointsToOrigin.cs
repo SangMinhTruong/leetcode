@@ -3,9 +3,11 @@ public class Solution
     public int[][] KClosest(int[][] points, int k)
     {
         var queue = new PriorityQueue<int[], int>();
+
         foreach (var point in points)
         {
             var distanceInverse = -DistanceToOriginSquare(point);
+
             if (queue.Count == k)
                 queue.EnqueueDequeue(point, distanceInverse);
             else
