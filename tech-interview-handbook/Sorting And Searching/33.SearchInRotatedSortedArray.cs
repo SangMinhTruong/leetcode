@@ -8,6 +8,7 @@ public class Solution
         while (left < right)
         {
             int mid = (left + right) / 2;
+
             if (nums[mid] > nums[right])
                 left = mid + 1;
             else
@@ -22,6 +23,7 @@ public class Solution
         {
             int mid = (left + right) / 2;
             int realMid = (mid + rotation) % nums.Length;
+
             if (nums[realMid] == target)
                 return realMid;
             else if (nums[realMid] > target)
