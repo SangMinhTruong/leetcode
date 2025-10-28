@@ -64,6 +64,7 @@ public class Solution
         while (queue.Count > 0)
         {
             (int curI, int curJ) = queue.Dequeue();
+
             grid[curI][curJ] = '#';
 
             (int, int)[] directions = [(1, 0), (-1, 0), (0, 1), (0, -1)];
